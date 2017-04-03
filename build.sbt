@@ -19,7 +19,8 @@ val example = crossProject.settings(
 ).jsSettings(
   name := "Client",
   libraryDependencies ++= Seq(
-    "org.scala-js" %%% "scalajs-dom" % "0.9.1"
+    "org.scala-js" %%% "scalajs-dom" % "0.9.1",
+    "io.github.outwatch" %%% "outwatch" % "0.9.2"
   )
 ).jvmSettings(
   Revolver.settings:_*

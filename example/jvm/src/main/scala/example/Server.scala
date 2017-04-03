@@ -28,6 +28,7 @@ object Template{
         )
       ),
       body(margin:=0)(
+        div(id:="outwatchApp"),
         script("example.ScalaJSExample().main()")
       )
     )
@@ -76,4 +77,18 @@ object Server extends Api {
     val files = Option(new java.io.File(prefix).list()).toSeq.flatten
     files.filter(_.startsWith(chunks.last))
   }
+
+  var database: Map[Int, Example] = Map(
+    1 -> Example("skala", 3, Some(1)),
+    2 -> Example("dotty", 0, Some(2))
+  )
+
+  def save(example: Example): Example = {
+    val nextId = database.keys.max + 1
+    database = database + (nextId -> example.copy(id = Some(nextId)))
+    database(nextId)
+  }
+
+  def all(): Seq[Example] =
+    database.values.toSeq
 }

@@ -1,12 +1,14 @@
 package example
 import scala.scalajs.js.annotation.JSExport
 import org.scalajs.dom
+
 import scala.concurrent.Future
 import scalajs.concurrent.JSExecutionContext.Implicits.queue
 import scalatags.JsDom.all._
 import upickle.default._
 import upickle.Js
 import autowire._
+import outwatch.dom.OutWatch
 
 object Client extends autowire.Client[Js.Value, Reader, Writer]{
   override def doCall(req: Request): Future[Js.Value] = {
@@ -27,7 +29,7 @@ object ScalaJSExample {
   @JSExport
   def main(): Unit = {
     
-    val inputBox = input.render
+    /*val inputBox = input.render
     val outputBox = div.render
 
     def updateOutput() = {
@@ -54,6 +56,8 @@ object ScalaJSExample {
         inputBox,
         outputBox
       ).render
-    )
+    )*/
+
+    OutWatch.render("#outwatchApp", OutWatchApp.node)
   }
 }
